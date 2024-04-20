@@ -43,7 +43,10 @@ namespace Aquarium
             _fishs.Add(fish);
         }
 
-
+        private void RemoveFish(int index) 
+        {
+            _fishs.RemoveAt(index);
+        }
         private void ShowInfo()
         {
             foreach (Fish fish in _fishs)
