@@ -32,8 +32,9 @@ namespace Aquarium
                     case "3":
                         isProgrammWorck = false;
                         break;
-
                 }
+
+                // void отнимать жизни у рыб
             }
         }
 
