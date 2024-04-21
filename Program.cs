@@ -10,7 +10,7 @@ namespace Aquarium
     {
         static void Main(string [] args)
         {
-            Aquarium aquarium = new Aquarium(); 
+            Aquarium aquarium = new Aquarium();
 
             aquarium.RunAquarium();
         }

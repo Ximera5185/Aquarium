@@ -8,8 +8,8 @@ namespace Aquarium
 
         static public int GetRandomNumber()
         {
-            int minValue = 1;
-            int maxValue = 10;
+            int minValue = 10;
+            int maxValue = 20;
 
             s_random = new Random();
 

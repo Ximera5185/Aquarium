@@ -12,7 +12,7 @@ namespace Aquarium
 
         private CreatorFish _creatorFish = new CreatorFish();
 
-        public string _userCommand = "";
+        private string _userCommand = "";
 
         public void RunAquarium()
         {
@@ -25,33 +25,55 @@ namespace Aquarium
                 switch (_userCommand)
                 {
                     case "1":
-                        AddFish(_creatorFish.CreateFish());
+                        AddFish();
                         break;
                     case "2":
+                        GetFish();
                         break;
                     case "3":
                         isProgrammWorck = false;
                         break;
+
                 }
 
-                // void отнимать жизни у рыб
+                TakeLife();
             }
         }
 
-        private void AddFish(Fish fish)
+        private void TakeLife()
         {
-            _fishs.Add(fish);
+            for (int i = 0; i < _fishs.Count; i++)
+            {
+                _fishs [i].TakeDamage();
+
+                if (_fishs [i].Heath == 0)
+                {
+                    _fishs.Remove(_fishs [i]);
+                }
+            }
         }
 
-        private void RemoveFish(int index) 
+        private void GetFish()
         {
-            _fishs.RemoveAt(index);
+            Console.WriteLine("Введите порядковый номер рыбки");
+
+            int index = Convert.ToInt32(Console.ReadLine());
+
+            _fishs.RemoveAt(index - 1);
         }
+
+        private void AddFish()
+        {
+            _fishs.Add(_creatorFish.CreateFish());
+        }
+
         private void ShowInfo()
         {
-            foreach (Fish fish in _fishs)
+            for (int i = 0; i < _fishs.Count; i++)
             {
-                fish.ShowInfo();
+                Console.Write($"{i + 1} ");
+
+                _fishs [i].ShowInfo();
             }
         }
 
@@ -62,7 +84,8 @@ namespace Aquarium
             ShowInfo();
 
             Console.WriteLine($"В аквариуме {_fishs.Count} рыб\n" +
-            $"Чтобы добавить рыбку нажмите 1\n" + 
+            $"\n" +
+            $"Чтобы добавить рыбку нажмите 1\n" +
             $"Чтобы достать рыбку введите 2\n" +
             $"Выход из программы 3");
 
