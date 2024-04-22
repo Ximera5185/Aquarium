@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aquarium
 {
     internal class Aquarium
     {
+        private const string CommandAddFish = "1";
+        private const string CommandRemoveFish = "2";
+        private const string CommandExit = "3";
+
         private List<Fish> _fishs = new List<Fish>();
 
         private CreatorFish _creatorFish = new CreatorFish();
@@ -24,13 +25,15 @@ namespace Aquarium
 
                 switch (_userCommand)
                 {
-                    case "1":
+                    case CommandAddFish:
                         AddFish();
                         break;
-                    case "2":
+
+                    case CommandRemoveFish:
                         GetFish();
                         break;
-                    case "3":
+
+                    case CommandExit:
                         isProgrammWorck = false;
                         break;
 
@@ -55,11 +58,30 @@ namespace Aquarium
 
         private void GetFish()
         {
-            Console.WriteLine("Введите порядковый номер рыбки");
-
-            int index = Convert.ToInt32(Console.ReadLine());
+            int index = GetUserNumber();
 
             _fishs.RemoveAt(index - 1);
+        }
+
+        private int GetUserNumber()
+        {
+            int number = 0;
+
+            bool isNumber = false;
+
+
+            while (isNumber == false)
+            {
+                Console.WriteLine("Вы ввели не целое число.");
+
+                Console.WriteLine("Введите порядковый номер рыбки : ");
+
+                string input = Console.ReadLine();
+
+                isNumber = int.TryParse(input, out number);
+            }
+
+            return number;
         }
 
         private void AddFish()
@@ -85,9 +107,9 @@ namespace Aquarium
 
             Console.WriteLine($"В аквариуме {_fishs.Count} рыб\n" +
             $"\n" +
-            $"Чтобы добавить рыбку нажмите 1\n" +
-            $"Чтобы достать рыбку введите 2\n" +
-            $"Выход из программы 3");
+            $"Чтобы добавить рыбку нажмите {CommandAddFish}\n" +
+            $"Чтобы достать рыбку введите {CommandRemoveFish}\n" +
+            $"Выход из программы {CommandExit}");
 
             _userCommand = Console.ReadLine();
         }
