@@ -59,9 +59,17 @@ namespace Aquarium
 
         private void PullOutFish()
         {
-            int index = GetUserNumber();
+            if (_fishs.Count > 0)
+            {
+                int index = GetUserNumber();
 
-            _fishs.RemoveAt(index - 1);
+                _fishs.RemoveAt(index - 1);
+            }
+            else
+            {
+                Console.WriteLine("В аквариуме нет рыбок, нажмите любую клавишу для продолжения");
+                Console.ReadKey();
+            }
         }
 
         private int GetUserNumber()
