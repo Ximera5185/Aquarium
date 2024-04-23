@@ -5,24 +5,37 @@ namespace Aquarium
 {
     internal class Aquarium
     {
-        private const string CommandAddFish = "1";
-        private const string CommandRemoveFish = "2";
-        private const string CommandNextMove = "3";
-        private const string CommandExit = "4";
 
         private List<Fish> _fishs = new List<Fish>();
 
-        private string _userCommand = "";
 
         public void Run()
         {
+            const string CommandAddFish = "1";
+            const string CommandRemoveFish = "2";
+            const string CommandNextMove = "3";
+            const string CommandExit = "4";
+
+            string userCommand = "";
+
             bool isProgrammWorck = true;
 
             while (isProgrammWorck)
             {
-                ShowStatusAqvarium();
+                Console.Clear();
 
-                switch (_userCommand)
+                ShowInfo();
+
+                Console.WriteLine($"В аквариуме {_fishs.Count} рыб\n" +
+                $"\n" +
+                $"Чтобы добавить рыбку нажмите {CommandAddFish}\n" +
+                $"Чтобы достать рыбку введите {CommandRemoveFish}\n" +
+                $"Сделать следующий ход {CommandNextMove}\n" +
+                $"Выход из программы {CommandExit}");
+
+                userCommand = Console.ReadLine();
+
+                switch (userCommand)
                 {
                     case CommandAddFish:
                         AddFish();
@@ -63,7 +76,19 @@ namespace Aquarium
             {
                 int index = GetUserNumber();
 
-                _fishs.RemoveAt(index - 1);
+                for (int i = 0; i < _fishs.Count; i++)
+                {
+                    if (index == i)
+                    {
+                     _fishs.RemoveAt(index - 1);
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Нет такошо порядкового номера");
+                        Console.ReadKey();
+                    }
+                }
             }
             else
             {
@@ -114,22 +139,6 @@ namespace Aquarium
 
                 _fishs [i].ShowInfo();
             }
-        }
-
-        private void ShowStatusAqvarium()
-        {
-            Console.Clear();
-
-            ShowInfo();
-
-            Console.WriteLine($"В аквариуме {_fishs.Count} рыб\n" +
-            $"\n" +
-            $"Чтобы добавить рыбку нажмите {CommandAddFish}\n" +
-            $"Чтобы достать рыбку введите {CommandRemoveFish}\n" +
-            $"Сделать следующий ход {CommandNextMove}\n" +
-            $"Выход из программы {CommandExit}");
-
-            _userCommand = Console.ReadLine();
         }
     }
 }
