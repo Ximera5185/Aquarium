@@ -7,15 +7,14 @@ namespace Aquarium
     {
         private const string CommandAddFish = "1";
         private const string CommandRemoveFish = "2";
-        private const string CommandExit = "3";
+        private const string CommandNextMove = "3";
+        private const string CommandExit = "4";
 
         private List<Fish> _fishs = new List<Fish>();
 
-        private CreatorFish _creatorFish = new CreatorFish();
-
         private string _userCommand = "";
 
-        public void RunAquarium()
+        public void Run()
         {
             bool isProgrammWorck = true;
 
@@ -30,20 +29,22 @@ namespace Aquarium
                         break;
 
                     case CommandRemoveFish:
-                        GetFish();
+                        PullOutFish();
+                        break;
+
+                    case CommandNextMove:
+                        AgeFish();
                         break;
 
                     case CommandExit:
                         isProgrammWorck = false;
                         break;
-
                 }
 
-                TakeLife();
             }
         }
 
-        private void TakeLife()
+        private void AgeFish()
         {
             for (int i = 0; i < _fishs.Count; i++)
             {
@@ -56,7 +57,7 @@ namespace Aquarium
             }
         }
 
-        private void GetFish()
+        private void PullOutFish()
         {
             int index = GetUserNumber();
 
@@ -68,7 +69,6 @@ namespace Aquarium
             int number = 0;
 
             bool isNumber = false;
-
 
             while (isNumber == false)
             {
@@ -86,6 +86,8 @@ namespace Aquarium
 
         private void AddFish()
         {
+            CreatorFish _creatorFish = new CreatorFish();
+
             _fishs.Add(_creatorFish.CreateFish());
         }
 
@@ -109,6 +111,7 @@ namespace Aquarium
             $"\n" +
             $"Чтобы добавить рыбку нажмите {CommandAddFish}\n" +
             $"Чтобы достать рыбку введите {CommandRemoveFish}\n" +
+            $"Сделать следующий ход {CommandNextMove}\n" +
             $"Выход из программы {CommandExit}");
 
             _userCommand = Console.ReadLine();

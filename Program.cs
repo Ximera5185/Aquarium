@@ -6,7 +6,7 @@
         {
             Aquarium aquarium = new Aquarium();
 
-            aquarium.RunAquarium();
+            aquarium.Run();
         }
     }
 }
