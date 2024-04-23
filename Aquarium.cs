@@ -72,13 +72,20 @@ namespace Aquarium
 
             while (isNumber == false)
             {
-                Console.WriteLine("Вы ввели не целое число.");
-
                 Console.WriteLine("Введите порядковый номер рыбки : ");
 
                 string input = Console.ReadLine();
 
                 isNumber = int.TryParse(input, out number);
+
+                if (isNumber == false)
+                {
+                    Console.WriteLine("Вы ввели не целое число.");
+                }
+                else
+                {
+                    isNumber = true;
+                }
             }
 
             return number;
