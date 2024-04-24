@@ -6,7 +6,7 @@ namespace Aquarium
     {
         public Fish CreateFish() 
         {
-            string nameFish = "";
+            string nameFish;
 
             Console.WriteLine("Введите имя новой рыбки");
 

@@ -5,9 +5,7 @@ namespace Aquarium
 {
     internal class Aquarium
     {
-
         private List<Fish> _fishs = new List<Fish>();
-
 
         public void Run()
         {
@@ -16,7 +14,7 @@ namespace Aquarium
             const string CommandNextMove = "3";
             const string CommandExit = "4";
 
-            string userCommand = "";
+            string userCommand;
 
             bool isProgrammWorck = true;
 
@@ -61,7 +59,7 @@ namespace Aquarium
         {
             for (int i = 0; i < _fishs.Count; i++)
             {
-                _fishs [i].TakeDamage();
+                _fishs [i].SpendLife();
 
                 if (_fishs [i].Heath == 0)
                 {
@@ -85,7 +83,6 @@ namespace Aquarium
                     Console.WriteLine("Нет такого порядкового номера, нажмите любую клавишу для продолжения");
                     Console.ReadKey();
                 }
-
             }
             else
             {
