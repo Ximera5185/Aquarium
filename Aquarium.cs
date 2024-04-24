@@ -76,19 +76,16 @@ namespace Aquarium
             {
                 int index = GetUserNumber();
 
-                for (int i = 0; i < _fishs.Count; i++)
+                if (index <= _fishs.Count && index != 0)
                 {
-                    if (index == i)
-                    {
-                     _fishs.RemoveAt(index - 1);
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("Нет такошо порядкового номера");
-                        Console.ReadKey();
-                    }
+                    _fishs.RemoveAt(index - 1);
                 }
+                else
+                {
+                    Console.WriteLine("Нет такого порядкового номера, нажмите любую клавишу для продолжения");
+                    Console.ReadKey();
+                }
+
             }
             else
             {
