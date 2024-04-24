@@ -4,14 +4,15 @@ namespace Aquarium
 {
     static class UserUtils
     {
-        private static Random s_random;
-
-        static public int GetRandomNumber()
+         static UserUtils() 
         {
-            int minValue = 10;
-            int maxValue = 20;
+            Random s_random = new Random();
+        }
+    
 
-            s_random = new Random();
+        static public int GetRandomNumber(int minValue,int maxValue)
+        {
+           // s_random = new Random();
 
             return s_random.Next(minValue,maxValue);
         }

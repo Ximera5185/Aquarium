@@ -8,11 +8,14 @@ namespace Aquarium
         {
             string nameFish;
 
+            int minValue = 10;
+            int maxValue = 20;
+
             Console.WriteLine("Введите имя новой рыбки");
 
             nameFish = Console.ReadLine();
 
-            return new Fish(nameFish, UserUtils.GetRandomNumber());
+            return new Fish(nameFish, UserUtils.GetRandomNumber(minValue,maxValue));
         }
     }
 }

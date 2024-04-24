@@ -57,13 +57,13 @@ namespace Aquarium
 
         private void AgeFish()
         {
-            for (int i = 0; i < _fishs.Count; i++)
+            for (int i = _fishs.Count; i > 0; i--)
             {
-                _fishs [i].SpendLife();
+                _fishs [i-1].SpendLife();
 
-                if (_fishs [i].Heath == 0)
+                if (_fishs [i-1].Heath == 0)
                 {
-                    _fishs.Remove(_fishs [i]);
+                    _fishs.Remove(_fishs [i-1]);
                 }
             }
         }
