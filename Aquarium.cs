@@ -54,7 +54,7 @@ namespace Aquarium
             }
         }
 
-        private void AgeFish()
+        private void ToAgeFish()
         {
             for (int i = _fishs.Count - 1; i >= 0; i--)
             {
@@ -75,7 +75,7 @@ namespace Aquarium
 
         private void SkipTime()
         {
-            AgeFish();
+            ToAgeFish();
 
             RemoveDeadFish();
         }
