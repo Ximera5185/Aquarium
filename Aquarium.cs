@@ -107,24 +107,15 @@ namespace Aquarium
         {
             int number = 0;
 
-            bool isNumber = false;
+            string input = "";
 
-            while (isNumber == false)
+            while (int.TryParse(input, out number) == false)
             {
                 Console.WriteLine(message);
 
-                string input = Console.ReadLine();
+                input = Console.ReadLine();
 
-                isNumber = int.TryParse(input, out number);
-
-                if (isNumber == false)
-                {
-                    Console.WriteLine("Вы ввели не целое число.");
-                }
-                else
-                {
-                    isNumber = true;
-                }
+                Console.WriteLine("Вы ввели не целое число.");
             }
 
             return number;
