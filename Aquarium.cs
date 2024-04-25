@@ -44,54 +44,65 @@ namespace Aquarium
                         break;
 
                     case CommandNextMove:
-                        AgeFish();
+                        SkipTime();
                         break;
 
                     case CommandExit:
                         isProgrammWorck = false;
                         break;
                 }
-
             }
         }
 
         private void AgeFish()
         {
-            for (int i = _fishs.Count; i > 0; i--)
+            for (int i = _fishs.Count - 1; i >= 0; i--)
             {
-                _fishs [i-1].SpendLife();
+                _fishs [i].SpendLife();
+            }
+        }
 
-                if (_fishs [i-1].Heath == 0)
+        private void RemoveDeadFish()
+        {
+            for (int i = _fishs.Count - 1; i >= 0; i--)
+            {
+                if (_fishs [i].Heath == 0)
                 {
-                    _fishs.Remove(_fishs [i-1]);
+                    _fishs.Remove(_fishs [i]);
                 }
             }
+        }
+
+        private void SkipTime()
+        {
+            AgeFish();
+            RemoveDeadFish();
         }
 
         private void PullOutFish()
         {
             if (_fishs.Count > 0)
             {
-                int index = GetUserNumber();
+                Console.WriteLine("В аквариуме нет рыбок, нажмите любую клавишу для продолжения");
+                Console.ReadKey();
 
-                if (index <= _fishs.Count && index != 0)
-                {
-                    _fishs.RemoveAt(index - 1);
-                }
-                else
-                {
-                    Console.WriteLine("Нет такого порядкового номера, нажмите любую клавишу для продолжения");
-                    Console.ReadKey();
-                }
+                return;
+            }
+
+            int index = GetUserNumber("Введите порядковый номер рыбки : ") - 1;
+
+            if (index < _fishs.Count && index >= 0)
+            {
+                _fishs.RemoveAt(index);
             }
             else
             {
-                Console.WriteLine("В аквариуме нет рыбок, нажмите любую клавишу для продолжения");
+                Console.WriteLine("Нет такого порядкового номера, нажмите любую клавишу для продолжения");
                 Console.ReadKey();
             }
         }
 
-        private int GetUserNumber()
+        private int GetUserNumber(string message)
         {
             int number = 0;
 
@@ -99,7 +110,7 @@ namespace Aquarium
 
             while (isNumber == false)
             {
-                Console.WriteLine("Введите порядковый номер рыбки : ");
+                Console.WriteLine(message);
 
                 string input = Console.ReadLine();
 

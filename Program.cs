@@ -1,4 +1,6 @@
-﻿namespace Aquarium
+﻿using System;
+
+namespace Aquarium
 {
     internal class Program
     {

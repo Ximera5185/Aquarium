@@ -2,19 +2,13 @@
 
 namespace Aquarium
 {
-    static class UserUtils
+    class UserUtils
     {
-         static UserUtils() 
-        {
-            Random s_random = new Random();
-        }
-    
+        private static Random s_random = new Random();
 
-        static public int GetRandomNumber(int minValue,int maxValue)
+        public static int GetRandomNumber(int minValue, int maxValue)
         {
-           // s_random = new Random();
-
-            return s_random.Next(minValue,maxValue);
+            return s_random.Next(minValue, maxValue);
         }
     }
 }
