@@ -76,12 +76,13 @@ namespace Aquarium
         private void SkipTime()
         {
             AgeFish();
+
             RemoveDeadFish();
         }
 
         private void PullOutFish()
         {
-            if (_fishs.Count > 0)
+            if (_fishs.Count < 0)
             {
                 Console.WriteLine("В аквариуме нет рыбок, нажмите любую клавишу для продолжения");
                 Console.ReadKey();

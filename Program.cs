@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Aquarium
+﻿namespace Aquarium
 {
     internal class Program
     {
